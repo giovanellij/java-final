@@ -1,10 +1,10 @@
-package com.example.demo;
+package com.alquilerVehiculo.Final;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AlquilerVehiculosApplicationTests {
+class FinalApplicationTests {
 
 	@Test
 	void contextLoads() {

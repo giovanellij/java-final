@@ -1,13 +1,13 @@
-package com.example.demo;
+package com.alquilerVehiculo.Final;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AlquilerVehiculosApplication {
+public class FinalApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AlquilerVehiculosApplication.class, args);
+		SpringApplication.run(FinalApplication.class, args);
 	}
 
 }

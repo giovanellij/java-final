@@ -5,13 +5,13 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.1.RELEASE</version>
+		<version>2.2.2.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.java.final</groupId>
-	<artifactId>AlquilerVehiculos</artifactId>
+	<groupId>com.alquilerVehiculo</groupId>
+	<artifactId>Final</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>AlquilerVehiculos</name>
+	<name>Final</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -29,8 +29,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
