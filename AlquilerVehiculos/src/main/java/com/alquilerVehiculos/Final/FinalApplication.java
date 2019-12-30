@@ -1,4 +1,4 @@
-package com.alquilerVehiculo.Final;
+package com.alquilerVehiculos.Final;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

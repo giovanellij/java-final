@@ -8,11 +8,11 @@
 		<version>2.2.2.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.alquilerVehiculo</groupId>
+	<groupId>com.alquilerVehiculos</groupId>
 	<artifactId>Final</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Final</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Proyecto final para la materia JAVA</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -29,8 +29,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>mssql-jdbc</artifactId>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
