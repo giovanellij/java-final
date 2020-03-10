@@ -1,5 +1,4 @@
 package com.java.alquiler.controllers;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,7 +37,14 @@ public class VehiculoController {
 	
 	@GetMapping("/vehiculosDisponibles")
 	public List<Vehiculo> getAllVehiculosDisponibles() {
-		return vehiculoRepository.findAllVehiculosDisponibles();
+		List<Vehiculo> vehiculosDisponibles = vehiculoRepository.findAllVehiculosDisponibles();
+		return vehiculosDisponibles;
+	}
+	
+	
+	@GetMapping("/vehiculosAlquilados/{id}")
+	public List<Vehiculo> getAllVehiculosAlquiladosByClienteId(@PathVariable(value = "id") Long clienteId) {
+		return vehiculoRepository.findAllVehiculosAlquiladosByCliente(clienteId);
 	}
 
 	@GetMapping("/vehiculo/{id}")
@@ -51,18 +57,20 @@ public class VehiculoController {
 	
 	
 	@PostMapping("/vehiculosFiltered")
-	public List<Vehiculo> getVehiculoByFilter(@Valid @RequestBody SearchVehiculoCriteria criteria) throws ParseException {
+	public List<Vehiculo> getVehiculoByFilter(@Valid @RequestBody SearchVehiculoCriteria criteria) {
+		
 		List<Vehiculo> vehiculos = new ArrayList<Vehiculo>();		
 		
 		if(criteria.disponibles && criteria.pendientesDevolucion) {
-			vehiculos = vehiculoRepository.findAllBetweenDatesAndSearchText(criteria.searchText);
+			vehiculos = vehiculoRepository.findAllBySearchText(criteria.searchText);
 		} else {
 			if(criteria.disponibles) {
-//				vehiculos = vehiculoRepository.findDisponiblesBetweenDatesAndSearchText(criteria.from.trim(), criteria.to.trim(), criteria.searchText);
+				vehiculos = vehiculoRepository.findDisponiblesBySearchText(criteria.searchText);
 			} else {
-//				vehiculos = vehiculoRepository.findPendientesDevolucionBetweenDatesAndSearchText(criteria.from.trim(), criteria.to.trim(), criteria.searchText);
+				vehiculos = vehiculoRepository.findPendientesDevolucionBySearchText(criteria.searchText);
 			}
 		}
+		
 		return vehiculos;
 	}
 	

@@ -33,6 +33,10 @@ public class ClienteController {
 	public List<Cliente> getAllClientes() {
 		return clienteRepository.findAll();
 	}
+	@GetMapping("/clientesActivos")
+	public List<Cliente> getAllClientesActivos() {
+		return clienteRepository.findAllClientesActivos();
+	}
 	@GetMapping("/cliente/{id}")
 	public ResponseEntity<Cliente> getClienteById(@PathVariable(value = "id") Long clienteId)
 			throws ResourceNotFoundException {
