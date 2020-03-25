@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.java.alquiler.business.CreateCliente;
+
 @Entity(name = "Cliente")
 @Table(name = "clientes")
 public class Cliente {
@@ -45,6 +47,17 @@ public class Cliente {
     private Usuario usuario;
 	
 	public Cliente() {}
+	
+	public Cliente(CreateCliente cliente) {
+		this.id = cliente.id;
+		this.nroDocumento = cliente.nroDocumento;
+		this.activo = true;
+		this.apellido = cliente.apellido;
+		this.nombre = cliente.nombre;
+		this.email = cliente.email;
+		this.telefono = cliente.telefono;
+		this.direccion = cliente.direccion;
+	}
 	
 	public long getId() {
 		return id;

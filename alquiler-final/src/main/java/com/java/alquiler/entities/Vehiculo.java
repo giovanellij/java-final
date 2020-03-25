@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.java.alquiler.business.CreateVehiculo;
+
 @Entity(name = "Vehiculo")
 @Table(name = "vehiculos")
 public class Vehiculo {
@@ -32,7 +34,22 @@ public class Vehiculo {
 	@Column(name = "categoriaId", nullable = false)
 	private long categoriaId;
 	
+	public long getCategoriaId() {
+		return categoriaId;
+	}
+
+	public void setCategoriaId(long categoriaId) {
+		this.categoriaId = categoriaId;
+	}
+
 	public Vehiculo() {}
+	
+	public Vehiculo(CreateVehiculo vehiculo) {
+		this.patente = vehiculo.patente;
+		this.descripcion = vehiculo.descripcion;
+		this.categoriaId = vehiculo.categoriaId;
+		this.alquilado = false;
+	}
 	
 	public long getId() {
 		return id;

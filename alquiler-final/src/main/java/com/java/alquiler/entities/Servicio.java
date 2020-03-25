@@ -1,5 +1,6 @@
 package com.java.alquiler.entities;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -58,6 +59,10 @@ public class Servicio {
 
 	public Date getFecServicio() {
 		return fecServicio;
+	}
+
+	public Date getTimestampServicio() {
+		return new Timestamp(fecServicio.getTime());
 	}
 
 	public void setFecServicio(Date fecServicio) {

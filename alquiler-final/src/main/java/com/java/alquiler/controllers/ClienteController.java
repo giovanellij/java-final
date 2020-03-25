@@ -18,9 +18,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.java.alquiler.business.CreateCliente;
 import com.java.alquiler.entities.Cliente;
+import com.java.alquiler.entities.Usuario;
+import com.java.alquiler.exceptions.RequestUnauthorizedException;
 import com.java.alquiler.exceptions.ResourceNotFoundException;
 import com.java.alquiler.repositories.ClienteRepository;
+import com.java.alquiler.repositories.UserRepository;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -28,49 +32,89 @@ import com.java.alquiler.repositories.ClienteRepository;
 public class ClienteController {
 	@Autowired
 	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private UserRepository usuarioRepository;
 
-	@GetMapping("/clientes")
-	public List<Cliente> getAllClientes() {
+	@GetMapping("/clientes/{username}")
+	public List<Cliente> getAllClientes(@PathVariable(value = "username") String username) throws ResourceNotFoundException, RequestUnauthorizedException {
+		
+		Usuario usuario = usuarioRepository.findByUserName(username)
+				.orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado un usuario para ese nombre: " + username));
+		
+		if(!usuario.isAdministrador()) {			
+			throw new RequestUnauthorizedException("El usuario no tiene permiso para realizar esta accion");			
+		}
+		
 		return clienteRepository.findAll();
 	}
-	@GetMapping("/clientesActivos")
-	public List<Cliente> getAllClientesActivos() {
+	@GetMapping("/clientesActivos/{username}")
+	public List<Cliente> getAllClientesActivos(@PathVariable(value = "username") String username) throws ResourceNotFoundException, RequestUnauthorizedException {
+		
+		Usuario usuario = usuarioRepository.findByUserName(username)
+				.orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado un usuario para ese nombre: " + username));
+		
+		if(!usuario.isAdministrador()) {			
+			throw new RequestUnauthorizedException("El usuario no tiene permiso para realizar esta accion");			
+		}
+		
 		return clienteRepository.findAllClientesActivos();
 	}
-	@GetMapping("/cliente/{id}")
-	public ResponseEntity<Cliente> getClienteById(@PathVariable(value = "id") Long clienteId)
-			throws ResourceNotFoundException {
-		Cliente cliente = clienteRepository.findById(clienteId)
-				.orElseThrow(() -> new ResourceNotFoundException("Cliente not found for this id :: " + clienteId));
-		return ResponseEntity.ok().body(cliente);
-	}
-
+	
 	@PostMapping("/clientes")
-	public Cliente createCliente(@Valid @RequestBody Cliente cliente) {
-		return clienteRepository.save(cliente);
+	public Cliente createCliente(@Valid @RequestBody CreateCliente cliente) throws ResourceNotFoundException, RequestUnauthorizedException {
+		
+		Usuario usuario = usuarioRepository.findByUserName(cliente.createdBy)
+				.orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado un usuario para ese nombre: " + cliente.createdBy));
+		
+		if(!usuario.isAdministrador()) {			
+			throw new RequestUnauthorizedException("El usuario no tiene permiso para realizar esta accion");			
+		}
+		
+		Cliente newCliente = new Cliente(cliente);
+		
+		return clienteRepository.save(newCliente);
 	}
 
 	@PutMapping("/clientes/{id}")
 	public ResponseEntity<Cliente> updateCliente(@PathVariable(value = "id") Long clienteId,
-			@Valid @RequestBody Cliente clienteDetails) throws ResourceNotFoundException {
+			@Valid @RequestBody CreateCliente clienteDetails) throws ResourceNotFoundException, RequestUnauthorizedException {
+		
+		Usuario usuario = usuarioRepository.findByUserName(clienteDetails.createdBy)
+				.orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado un usuario para ese nombre: " + clienteDetails.createdBy));
+		
+		if(!usuario.isAdministrador()) {			
+			throw new RequestUnauthorizedException("El usuario no tiene permiso para realizar esta accion");			
+		}
+		
 		Cliente cliente = clienteRepository.findById(clienteId)
 				.orElseThrow(() -> new ResourceNotFoundException("Cliente not found for this id : " + clienteId));
 
-		cliente.setNroDocumento(clienteDetails.getNroDocumento());
-		cliente.setNombre(clienteDetails.getNombre());
-		cliente.setApellido(clienteDetails.getApellido());
-		cliente.setEmail(clienteDetails.getEmail());
-		cliente.setDireccion(clienteDetails.getDireccion());
-		cliente.setTelefono(clienteDetails.getTelefono());
+		cliente.setNroDocumento(clienteDetails.nroDocumento);
+		cliente.setNombre(clienteDetails.nombre);
+		cliente.setApellido(clienteDetails.apellido);
+		cliente.setEmail(clienteDetails.email);
+		cliente.setDireccion(clienteDetails.direccion);
+		cliente.setTelefono(clienteDetails.telefono);
 		
 		final Cliente updatedCliente = clienteRepository.save(cliente);
 		
 		return ResponseEntity.ok(updatedCliente);
 	}
 
-	@DeleteMapping("/clientes/{id}")
-	public Map<String, Boolean> deleteCliente(@PathVariable(value = "id") Long clienteId)
-			throws ResourceNotFoundException {
+	@DeleteMapping("/clientes/{id}/{username}")
+	public Map<String, Boolean> deleteCliente(
+			@PathVariable(value = "id") Long clienteId,
+			@PathVariable(value = "username") String username
+			) throws ResourceNotFoundException, RequestUnauthorizedException {
+		
+		Usuario usuario = usuarioRepository.findByUserName(username)
+				.orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado un usuario para ese nombre: " + username));
+		
+		if(!usuario.isAdministrador()) {			
+			throw new RequestUnauthorizedException("El usuario no tiene permiso para realizar esta accion");			
+		}
+		
 		Cliente cliente = clienteRepository.findById(clienteId)
 				.orElseThrow(() -> new ResourceNotFoundException("Cliente not found for this id : " + clienteId));
 

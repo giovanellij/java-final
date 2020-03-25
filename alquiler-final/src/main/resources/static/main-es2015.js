@@ -71,7 +71,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"modal-header\">\r\n    <h4 class=\"modal-title\">Cliente: {{cliente.dni}}</h4>\r\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"activeModal.dismiss('Cross click')\">\r\n      <span aria-hidden=\"true\">&times;</span>\r\n    </button>\r\n</div>\r\n<div class=\"modal-body\">\r\n    <form [formGroup]=\"this.editableClienteForm\" (ngSubmit)=\"onSubmit()\">\r\n        <input type=\"text\" class=\"form-control\" name=\"nroDocumento\" placeholder=\"DNI\" formControlName=\"nroDocumento\">\r\n        <br/>\r\n        <input type=\"text\" class=\"form-control\" name=\"apellido\" placeholder=\"Apellido\" formControlName=\"apellido\">\r\n        <br/>\r\n        <input type=\"text\" class=\"form-control\" name=\"nombre\" placeholder=\"Nombre\" formControlName=\"nombre\">\r\n        <br/>\r\n        <input type=\"text\" class=\"form-control\" name=\"email\" placeholder=\"Email\" formControlName=\"email\">\r\n        <br/>\r\n        <input type=\"text\" class=\"form-control\" name=\"telefono\" placeholder=\"Teléfono\" formControlName=\"telefono\">\r\n        <br/>\r\n        <input type=\"text\" class=\"form-control\" name=\"direccion\" placeholder=\"Dirección\" formControlName=\"direccion\">\r\n        <br/>\r\n        <button type=\"submit\" class=\"btn btn-success btn-sm btn-block\">\r\n            <i class=\"fas fa-save\"></i>\r\n        </button>\r\n    </form>\r\n\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"modal-header\">\r\n    <h4 class=\"modal-title\">Cliente: {{cliente.nroDocumento}}</h4>\r\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"activeModal.dismiss('Cross click')\">\r\n      <span aria-hidden=\"true\">&times;</span>\r\n    </button>\r\n</div>\r\n<div class=\"modal-body\">\r\n    <form [formGroup]=\"this.editableClienteForm\" (ngSubmit)=\"onSubmit()\">\r\n        <input type=\"text\" class=\"form-control\" name=\"nroDocumento\" placeholder=\"DNI\" formControlName=\"nroDocumento\">\r\n        <br/>\r\n        <input type=\"text\" class=\"form-control\" name=\"apellido\" placeholder=\"Apellido\" formControlName=\"apellido\">\r\n        <br/>\r\n        <input type=\"text\" class=\"form-control\" name=\"nombre\" placeholder=\"Nombre\" formControlName=\"nombre\">\r\n        <br/>\r\n        <input type=\"text\" class=\"form-control\" name=\"email\" placeholder=\"Email\" formControlName=\"email\">\r\n        <br/>\r\n        <input type=\"text\" class=\"form-control\" name=\"telefono\" placeholder=\"Teléfono\" formControlName=\"telefono\">\r\n        <br/>\r\n        <input type=\"text\" class=\"form-control\" name=\"direccion\" placeholder=\"Dirección\" formControlName=\"direccion\">\r\n        <br/>\r\n        <button type=\"submit\" class=\"btn btn-success btn-sm btn-block\">\r\n            <i class=\"fas fa-save\"></i>\r\n        </button>\r\n    </form>\r\n\r\n</div>\r\n");
 
 /***/ }),
 
@@ -124,6 +124,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\n  <div class=\"col\">\n      <h3>Mis alquileres</h3>\n  </div>\n</div>\n<hr>\n<div class=\"card-columns\" *ngIf=\"this.servicios.length > 0\">\n  <div class=\"card\" [class.border-danger]=\"servicio.fecCancelacion !== null\" [class.border-success]=\"servicio.fecCancelacion === null\" *ngFor=\"let servicio of this.servicios\">\n    <div class=\"card-body\">\n      <h5 class=\"card-title\">Servicio de alquiler Nº: {{ servicio.nroReserva }}</h5>\n      <p class=\"card-text\">Fecha de contratación: {{ servicio.fecServicio | date: 'dd/MM/yyyy' }}</p>\n      <p class=\"card-text\" *ngIf=\"servicio.fecCancelacion !== null\">Fecha de cancelación: {{ servicio.fecCancelacion | date: 'dd/MM/yyyy' }}</p>\n      <button class=\"btn btn-danger\" *ngIf='!servicio.fecCancelacion' (click)=\"this.cancelarServicio(servicio)\">Cancelar servicio</button>\n    </div>\n  </div>\n</div>\n\n<p *ngIf=\"this.servicios.length === 0\">No hay servicios disponibles para mostrar.</p>\n\n\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/shared/categorias-select/categorias-select.component.html":
+/*!*****************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/shared/categorias-select/categorias-select.component.html ***!
+  \*****************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"form-group\">\n  <div class=\"input-group\">\n      <select class=\"form-control\" id=\"selectCategoria\" (change)=\"this.sendSelectedOption()\" [(ngModel)]=\"this.id\">\n          <option value=\"0\" disabled>Categoria</option>\n          <option *ngFor=\"let item of this.categorias\" [value]='item.id'>{{item.descripcion}}</option>\n      </select>\n  </div>\n</div>\n");
 
 /***/ }),
 
@@ -201,7 +214,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"modal-header\">\r\n    <h4 class=\"modal-title\">Mi nuevo vehículo</h4>\r\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"activeModal.dismiss('Cross click')\">\r\n      <span aria-hidden=\"true\">&times;</span>\r\n    </button>\r\n</div>\r\n<div class=\"modal-body\">\r\n    <form [formGroup]=\"this.newVehiculoForm\" (ngSubmit)=\"onSubmit()\">\r\n        <input type=\"text\" class=\"form-control\" name=\"patente\" placeholder=\"Patente\" formControlName=\"patente\">\r\n        <br/>\r\n\r\n        <input type=\"text\" class=\"form-control\" name=\"descripcion\" placeholder=\"Descripción\" formControlName=\"descripcion\">\r\n\r\n        <br/>\r\n        <button type=\"submit\" class=\"btn btn-success btn-sm btn-block\">\r\n            <i class=\"fas fa-save\"></i>\r\n        </button>\r\n    </form>\r\n\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"modal-header\">\r\n    <h4 class=\"modal-title\">Mi nuevo vehículo</h4>\r\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"activeModal.dismiss('Cross click')\">\r\n      <span aria-hidden=\"true\">&times;</span>\r\n    </button>\r\n</div>\r\n<div class=\"modal-body\">\r\n    <form [formGroup]=\"this.newVehiculoForm\" (ngSubmit)=\"onSubmit()\">\r\n        <input type=\"text\" class=\"form-control\" name=\"patente\" placeholder=\"Patente\" formControlName=\"patente\">\r\n        <br/>\r\n\r\n        <input type=\"text\" class=\"form-control\" name=\"descripcion\" placeholder=\"Descripción\" formControlName=\"descripcion\">\r\n        <br>\r\n        <div>\r\n          <app-categorias-select (selectCategoriaEvent)=\"receiveSelectedCategoriaEvent($event)\"></app-categorias-select>\r\n        </div>\r\n\r\n        <br/>\r\n        <button type=\"submit\" class=\"btn btn-success btn-sm btn-block\">\r\n            <i class=\"fas fa-save\"></i>\r\n        </button>\r\n    </form>\r\n\r\n</div>\r\n");
 
 /***/ }),
 
@@ -227,7 +240,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"modal-header\">\r\n    <h4 class=\"modal-title\">Vehículo: {{this.vehiculo.patente}}</h4>\r\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"activeModal.dismiss('Cross click')\">\r\n      <span aria-hidden=\"true\">&times;</span>\r\n    </button>\r\n</div>\r\n<div class=\"modal-body\">\r\n    <form [formGroup]=\"this.editableVehiculoForm\" (ngSubmit)=\"onSubmit()\">\r\n        <input type=\"text\" class=\"form-control\" name=\"patente\" placeholder=\"Patente\" formControlName=\"patente\">\r\n        <br/>\r\n\r\n        <input type=\"text\" class=\"form-control\" name=\"descripcion\" placeholder=\"Descripción\" formControlName=\"descripcion\">\r\n\r\n        <br/>\r\n        <button type=\"submit\" class=\"btn btn-success btn-sm btn-block\">\r\n            <i class=\"fas fa-save\"></i>\r\n        </button>\r\n    </form>\r\n\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"modal-header\">\r\n    <h4 class=\"modal-title\">Vehículo: {{this.vehiculo.patente}}</h4>\r\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"activeModal.dismiss('Cross click')\">\r\n      <span aria-hidden=\"true\">&times;</span>\r\n    </button>\r\n</div>\r\n<div class=\"modal-body\">\r\n    <form [formGroup]=\"this.editableVehiculoForm\" (ngSubmit)=\"onSubmit()\">\r\n        <input type=\"text\" class=\"form-control\" name=\"patente\" placeholder=\"Patente\" formControlName=\"patente\">\r\n        <br/>\r\n\r\n        <input type=\"text\" class=\"form-control\" name=\"descripcion\" placeholder=\"Descripción\" formControlName=\"descripcion\">\r\n        <br>\r\n        <div>\r\n          <app-categorias-select (selectCategoriaEvent)=\"receiveSelectedCategoriaEvent($event)\"></app-categorias-select>\r\n        </div>\r\n\r\n        <br/>\r\n        <button type=\"submit\" class=\"btn btn-success btn-sm btn-block\">\r\n            <i class=\"fas fa-save\"></i>\r\n        </button>\r\n    </form>\r\n\r\n</div>\r\n");
 
 /***/ }),
 
@@ -617,6 +630,50 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/categorias/services/categorias.service.ts":
+/*!***********************************************************!*\
+  !*** ./src/app/categorias/services/categorias.service.ts ***!
+  \***********************************************************/
+/*! exports provided: CategoriasService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CategoriasService", function() { return CategoriasService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+
+
+
+
+
+let CategoriasService = class CategoriasService {
+    constructor(http) {
+        this.http = http;
+        this.API = src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].api;
+    }
+    GetAll() {
+        return this.http.get(`${this.API}/categorias`).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])((categorias) => {
+            return categorias;
+        }));
+    }
+};
+CategoriasService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"] }
+];
+CategoriasService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], CategoriasService);
+
+
+
+/***/ }),
+
 /***/ "./src/app/clientes/clientes-routing.module.ts":
 /*!*****************************************************!*\
   !*** ./src/app/clientes/clientes-routing.module.ts ***!
@@ -749,12 +806,22 @@ let CreateComponent = class CreateComponent {
             email: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
             telefono: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
             direccion: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-            activo: [true]
+            activo: [true, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            createdBy: [localStorage.getItem('userName'), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
         });
     }
     onSubmit() {
         if (this.newClienteForm.valid) {
-            this.clientesService.Save(this.newClienteForm.value).subscribe(response => { }, (error) => { }, () => this.activeModal.close());
+            this.clientesService.Save(this.newClienteForm.value).subscribe(response => {
+                alert('El cliente ha sido creado satisfactoriamente.');
+            }, (error) => {
+                if (error.status === 401) {
+                    alert('Usted no tiene permiso para realizar esta acción');
+                }
+                else {
+                    alert('Ups XD');
+                }
+            }, () => this.activeModal.close());
         }
     }
 };
@@ -820,6 +887,7 @@ let FeedComponent = class FeedComponent {
         this.router = router;
         this.modalService = modalService;
         this.formBuilder = formBuilder;
+        this.clientes = [];
         this.filterForm = this.formBuilder.group({
             searchText: [''],
         });
@@ -908,33 +976,34 @@ let ClientesService = class ClientesService {
                 'Cache-Control': 'no-cache'
             })
         };
+        this.username = localStorage.getItem('userName');
     }
     bloquear(clientes) {
-        const url = `${this.API}/clientes/${clientes.id}`;
+        const url = `${this.API}/clientes/${clientes.id}/${this.username}`;
         return this.http.delete(url);
     }
     desbloquear(cliente) {
-        const url = `${this.API}/clientes/${cliente.id}`;
+        const url = `${this.API}/clientes/${cliente.id}/${this.username}`;
         return this.http.delete(url);
     }
     GetAll() {
-        return this.http.get(`${this.API}/clientes`).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])((clientes) => {
+        return this.http.get(`${this.API}/clientes/${this.username}`).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])((clientes) => {
             return clientes;
         }));
     }
     GetAllActivos() {
-        return this.http.get(`${this.API}/clientesActivos`).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])((clientes) => {
+        return this.http.get(`${this.API}/clientesActivos/${this.username}`).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])((clientes) => {
             return clientes;
         }));
     }
     GetByFilter(filter) {
         if (filter === null) {
-            return this.http.get(`${this.API}/clientes`).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])((clientes) => {
+            return this.http.get(`${this.API}/clientes/${this.username}`).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])((clientes) => {
                 return clientes;
             }));
         }
         const standardFilter = filter.toLowerCase();
-        return this.http.get(`${this.API}/clientes`).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])((clientes) => {
+        return this.http.get(`${this.API}/clientes/${this.username}`).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])((clientes) => {
             return clientes.filter(x => x.nombre.toLowerCase().includes(standardFilter)
                 || x.apellido.toLowerCase().includes(standardFilter)
                 || x.email.toLowerCase().includes(standardFilter)
@@ -1011,12 +1080,22 @@ let UpdateComponent = class UpdateComponent {
             email: [this.cliente.email, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
             telefono: [this.cliente.telefono, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
             direccion: [this.cliente.direccion, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
-            activo: [this.cliente.activo]
+            createdBy: [localStorage.getItem('userName'), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
+            activo: [this.cliente.activo, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
         });
     }
     onSubmit() {
         if (this.editableClienteForm.valid) {
-            this.clientesService.Update(this.editableClienteForm.value).subscribe(response => { }, (error) => { }, () => this.activeModal.close());
+            this.clientesService.Update(this.editableClienteForm.value).subscribe(response => {
+                alert('El cliente ha sido editado satisfactoriamente.');
+            }, (error) => {
+                if (error.status === 401) {
+                    alert('Usted no tiene permiso para realizar esta acción');
+                }
+                else {
+                    alert('Ups XD');
+                }
+            }, () => this.activeModal.close());
         }
     }
 };
@@ -1481,21 +1560,20 @@ let FeedComponent = class FeedComponent {
             console.log('NO OK');
         });
     }
-    alquilarVehiculo(servicio) {
-        console.log(`Usted va a alquilar ${servicio}`);
-    }
     buscarPorFiltros() {
         this.criteria = {
             fromDate: `${this.fromDate.year}-${this.fromDate.month}-${this.fromDate.day}`,
             toDate: `${this.fromDate.year}-${this.fromDate.month}-${this.fromDate.day}`,
             alquileres: this.filterForm.value.alquileres,
-            devoluciones: this.filterForm.value.devoluciones
+            devoluciones: this.filterForm.value.devoluciones,
+            searchBy: localStorage.getItem('userName')
         };
         console.log(this.criteria);
         this.loadServicios(this.criteria);
     }
-    devolverVehiculo(servicio) {
-        console.log(`Usted va a devolver ${servicio}`);
+    cancelarServicio(servicio) {
+        this.alquileresService.CancelarServicio(servicio)
+            .subscribe(response => { console.log(response); this.loadServicios(); }, (error) => { });
     }
     isHovered(date) {
         return this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate);
@@ -1810,6 +1888,69 @@ ServiciosModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/shared/categorias-select/categorias-select.component.css":
+/*!**************************************************************************!*\
+  !*** ./src/app/shared/categorias-select/categorias-select.component.css ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NoYXJlZC9jYXRlZ29yaWFzLXNlbGVjdC9jYXRlZ29yaWFzLXNlbGVjdC5jb21wb25lbnQuY3NzIn0= */");
+
+/***/ }),
+
+/***/ "./src/app/shared/categorias-select/categorias-select.component.ts":
+/*!*************************************************************************!*\
+  !*** ./src/app/shared/categorias-select/categorias-select.component.ts ***!
+  \*************************************************************************/
+/*! exports provided: CategoriasSelectComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CategoriasSelectComponent", function() { return CategoriasSelectComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _categorias_services_categorias_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../categorias/services/categorias.service */ "./src/app/categorias/services/categorias.service.ts");
+
+
+
+let CategoriasSelectComponent = class CategoriasSelectComponent {
+    constructor(categoriasService) {
+        this.categoriasService = categoriasService;
+        this.selectCategoriaEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.id = 0;
+    }
+    ngOnInit() {
+        this.categoriasService.GetAll().subscribe((categorias) => {
+            this.categorias = categorias;
+            console.log(this.categorias);
+        });
+    }
+    sendSelectedOption() {
+        this.selectCategoriaEvent.emit(this.id);
+    }
+};
+CategoriasSelectComponent.ctorParameters = () => [
+    { type: _categorias_services_categorias_service__WEBPACK_IMPORTED_MODULE_2__["CategoriasService"] }
+];
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
+], CategoriasSelectComponent.prototype, "selectCategoriaEvent", void 0);
+CategoriasSelectComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-categorias-select',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./categorias-select.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/shared/categorias-select/categorias-select.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./categorias-select.component.css */ "./src/app/shared/categorias-select/categorias-select.component.css")).default]
+    })
+], CategoriasSelectComponent);
+
+
+
+/***/ }),
+
 /***/ "./src/app/shared/clientes-select/clientes-select.component.css":
 /*!**********************************************************************!*\
   !*** ./src/app/shared/clientes-select/clientes-select.component.css ***!
@@ -2079,6 +2220,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _footer_footer_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./footer/footer.component */ "./src/app/shared/footer/footer.component.ts");
 /* harmony import */ var _clientes_select_clientes_select_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./clientes-select/clientes-select.component */ "./src/app/shared/clientes-select/clientes-select.component.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _categorias_select_categorias_select_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./categorias-select/categorias-select.component */ "./src/app/shared/categorias-select/categorias-select.component.ts");
+
 
 
 
@@ -2092,13 +2235,13 @@ let SharedModule = class SharedModule {
 };
 SharedModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-        declarations: [_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_4__["NavbarComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_5__["HomeComponent"], _footer_footer_component__WEBPACK_IMPORTED_MODULE_6__["FooterComponent"], _clientes_select_clientes_select_component__WEBPACK_IMPORTED_MODULE_7__["ClientesSelectComponent"]],
+        declarations: [_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_4__["NavbarComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_5__["HomeComponent"], _footer_footer_component__WEBPACK_IMPORTED_MODULE_6__["FooterComponent"], _clientes_select_clientes_select_component__WEBPACK_IMPORTED_MODULE_7__["ClientesSelectComponent"], _categorias_select_categorias_select_component__WEBPACK_IMPORTED_MODULE_9__["CategoriasSelectComponent"]],
         imports: [
             _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"],
             _shared_routing_module__WEBPACK_IMPORTED_MODULE_3__["SharedRoutingModule"]
         ],
-        exports: [_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_4__["NavbarComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_5__["HomeComponent"], _footer_footer_component__WEBPACK_IMPORTED_MODULE_6__["FooterComponent"], _clientes_select_clientes_select_component__WEBPACK_IMPORTED_MODULE_7__["ClientesSelectComponent"]],
+        exports: [_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_4__["NavbarComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_5__["HomeComponent"], _footer_footer_component__WEBPACK_IMPORTED_MODULE_6__["FooterComponent"], _clientes_select_clientes_select_component__WEBPACK_IMPORTED_MODULE_7__["ClientesSelectComponent"], _categorias_select_categorias_select_component__WEBPACK_IMPORTED_MODULE_9__["CategoriasSelectComponent"]],
     })
 ], SharedModule);
 
@@ -2239,13 +2382,25 @@ let CreateComponent = class CreateComponent {
         this.newVehiculoForm = this.formBuilder.group({
             patente: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
             descripcion: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
-            alquilado: [false]
+            categoriaId: [0, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
+            alquilado: [false, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
+            createdBy: [localStorage.getItem('userName'), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
         });
     }
     onSubmit() {
         if (this.newVehiculoForm.valid) {
-            this.vehiculosService.Save(this.newVehiculoForm.value).subscribe(response => { }, (error) => { }, () => this.activeModal.close());
+            this.vehiculosService.Save(this.newVehiculoForm.value).subscribe(response => alert('El vehiculo ha sido creado satisfactoriamente'), (error) => {
+                if (error.status === 401) {
+                    alert('Usted no tiene permiso para realizar esta accion');
+                }
+                else {
+                    alert('Ups XD');
+                }
+            }, () => this.activeModal.close());
         }
+    }
+    receiveSelectedCategoriaEvent(id) {
+        this.newVehiculoForm.value.categoriaId = id;
     }
 };
 CreateComponent.ctorParameters = () => [
@@ -2315,6 +2470,7 @@ let FeedComponent = class FeedComponent {
         this.calendar = calendar;
         this.formatter = formatter;
         this.isCollapsed = false;
+        this.vehiculos = [];
         this.filterForm = this.formBuilder.group({
             searchTextForm: this.formBuilder.group({ searchText: [''] }),
             extendedFilterForm: this.formBuilder.group({
@@ -2416,38 +2572,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let VehiculosService = class VehiculosService {
-    // vehiculos: IVehiculo[] = [
-    //   {
-    //     patente: 'ABC 123',
-    //     descripcion: 'BMW M3',
-    //     disponible: true
-    //   },
-    //   {
-    //     patente: 'ABC 234',
-    //     descripcion: 'BMW M3',
-    //     disponible: false
-    //   },
-    //   {
-    //     patente: 'ABC 345',
-    //     descripcion: 'BMW M3',
-    //     disponible: true
-    //   },
-    //   {
-    //     patente: 'ABC 456',
-    //     descripcion: 'BMW M3',
-    //     disponible: false
-    //   },
-    //   {
-    //     patente: 'ABC 567',
-    //     descripcion: 'BMW M3',
-    //     disponible: false
-    //   },
-    //   {
-    //     patente: 'ABC 678',
-    //     descripcion: 'BMW M3',
-    //     disponible: true
-    //   },
-    // ];
     constructor(http, loginService) {
         this.http = http;
         this.loginService = loginService;
@@ -2458,6 +2582,7 @@ let VehiculosService = class VehiculosService {
                 'Cache-Control': 'no-cache'
             })
         };
+        this.username = localStorage.getItem('userName');
     }
     Alquilar(servicio) {
         console.log(servicio);
@@ -2474,11 +2599,11 @@ let VehiculosService = class VehiculosService {
             url += 'Disponibles';
         }
         if (!filter) {
-            return this.http.get(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])((vehiculos) => {
+            return this.http.get(`${url}`).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])((vehiculos) => {
                 return vehiculos;
             }));
         }
-        return this.http.post(`${this.API}/vehiculosFiltered`, filter, this.options).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])((vehiculos) => {
+        return this.http.post(`${this.API}/vehiculosFiltered/${this.username}`, filter, this.options).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])((vehiculos) => {
             return vehiculos;
         }));
     }
@@ -2549,13 +2674,26 @@ let UpdateComponent = class UpdateComponent {
             id: [this.vehiculo.id],
             patente: [this.vehiculo.patente, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
             descripcion: [this.vehiculo.descripcion, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
-            alquilado: [this.vehiculo.alquilado]
+            alquilado: [this.vehiculo.alquilado, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
+            categoriaId: [this.vehiculo.categoriaId, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
+            createdBy: [localStorage.getItem('userName'), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
         });
     }
     onSubmit() {
+        console.log(this.editableVehiculoForm);
         if (this.editableVehiculoForm.valid) {
-            this.vehiculosService.Update(this.editableVehiculoForm.value).subscribe(response => { }, (error) => { }, () => this.activeModal.close());
+            this.vehiculosService.Update(this.editableVehiculoForm.value).subscribe(response => alert('El vehiculo ha sido creado satisfactoriamente'), (error) => {
+                if (error.status === 401) {
+                    alert('Usted no tiene permiso para realizar esta accion');
+                }
+                else {
+                    alert('Ups XD');
+                }
+            }, () => this.activeModal.close());
         }
+    }
+    receiveSelectedCategoriaEvent(id) {
+        this.editableVehiculoForm.value.categoriaId = id;
     }
 };
 UpdateComponent.ctorParameters = () => [

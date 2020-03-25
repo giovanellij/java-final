@@ -111,7 +111,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"modal-header\">\r\n    <h4 class=\"modal-title\">Cliente: {{cliente.dni}}</h4>\r\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"activeModal.dismiss('Cross click')\">\r\n      <span aria-hidden=\"true\">&times;</span>\r\n    </button>\r\n</div>\r\n<div class=\"modal-body\">\r\n    <form [formGroup]=\"this.editableClienteForm\" (ngSubmit)=\"onSubmit()\">\r\n        <input type=\"text\" class=\"form-control\" name=\"nroDocumento\" placeholder=\"DNI\" formControlName=\"nroDocumento\">\r\n        <br/>\r\n        <input type=\"text\" class=\"form-control\" name=\"apellido\" placeholder=\"Apellido\" formControlName=\"apellido\">\r\n        <br/>\r\n        <input type=\"text\" class=\"form-control\" name=\"nombre\" placeholder=\"Nombre\" formControlName=\"nombre\">\r\n        <br/>\r\n        <input type=\"text\" class=\"form-control\" name=\"email\" placeholder=\"Email\" formControlName=\"email\">\r\n        <br/>\r\n        <input type=\"text\" class=\"form-control\" name=\"telefono\" placeholder=\"Teléfono\" formControlName=\"telefono\">\r\n        <br/>\r\n        <input type=\"text\" class=\"form-control\" name=\"direccion\" placeholder=\"Dirección\" formControlName=\"direccion\">\r\n        <br/>\r\n        <button type=\"submit\" class=\"btn btn-success btn-sm btn-block\">\r\n            <i class=\"fas fa-save\"></i>\r\n        </button>\r\n    </form>\r\n\r\n</div>\r\n";
+    __webpack_exports__["default"] = "<div class=\"modal-header\">\r\n    <h4 class=\"modal-title\">Cliente: {{cliente.nroDocumento}}</h4>\r\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"activeModal.dismiss('Cross click')\">\r\n      <span aria-hidden=\"true\">&times;</span>\r\n    </button>\r\n</div>\r\n<div class=\"modal-body\">\r\n    <form [formGroup]=\"this.editableClienteForm\" (ngSubmit)=\"onSubmit()\">\r\n        <input type=\"text\" class=\"form-control\" name=\"nroDocumento\" placeholder=\"DNI\" formControlName=\"nroDocumento\">\r\n        <br/>\r\n        <input type=\"text\" class=\"form-control\" name=\"apellido\" placeholder=\"Apellido\" formControlName=\"apellido\">\r\n        <br/>\r\n        <input type=\"text\" class=\"form-control\" name=\"nombre\" placeholder=\"Nombre\" formControlName=\"nombre\">\r\n        <br/>\r\n        <input type=\"text\" class=\"form-control\" name=\"email\" placeholder=\"Email\" formControlName=\"email\">\r\n        <br/>\r\n        <input type=\"text\" class=\"form-control\" name=\"telefono\" placeholder=\"Teléfono\" formControlName=\"telefono\">\r\n        <br/>\r\n        <input type=\"text\" class=\"form-control\" name=\"direccion\" placeholder=\"Dirección\" formControlName=\"direccion\">\r\n        <br/>\r\n        <button type=\"submit\" class=\"btn btn-success btn-sm btn-block\">\r\n            <i class=\"fas fa-save\"></i>\r\n        </button>\r\n    </form>\r\n\r\n</div>\r\n";
     /***/
   },
 
@@ -192,6 +192,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
     __webpack_exports__["default"] = "<div class=\"row\">\n  <div class=\"col\">\n      <h3>Mis alquileres</h3>\n  </div>\n</div>\n<hr>\n<div class=\"card-columns\" *ngIf=\"this.servicios.length > 0\">\n  <div class=\"card\" [class.border-danger]=\"servicio.fecCancelacion !== null\" [class.border-success]=\"servicio.fecCancelacion === null\" *ngFor=\"let servicio of this.servicios\">\n    <div class=\"card-body\">\n      <h5 class=\"card-title\">Servicio de alquiler Nº: {{ servicio.nroReserva }}</h5>\n      <p class=\"card-text\">Fecha de contratación: {{ servicio.fecServicio | date: 'dd/MM/yyyy' }}</p>\n      <p class=\"card-text\" *ngIf=\"servicio.fecCancelacion !== null\">Fecha de cancelación: {{ servicio.fecCancelacion | date: 'dd/MM/yyyy' }}</p>\n      <button class=\"btn btn-danger\" *ngIf='!servicio.fecCancelacion' (click)=\"this.cancelarServicio(servicio)\">Cancelar servicio</button>\n    </div>\n  </div>\n</div>\n\n<p *ngIf=\"this.servicios.length === 0\">No hay servicios disponibles para mostrar.</p>\n\n\n";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/shared/categorias-select/categorias-select.component.html":
+  /*!*****************************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/shared/categorias-select/categorias-select.component.html ***!
+    \*****************************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppSharedCategoriasSelectCategoriasSelectComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\"form-group\">\n  <div class=\"input-group\">\n      <select class=\"form-control\" id=\"selectCategoria\" (change)=\"this.sendSelectedOption()\" [(ngModel)]=\"this.id\">\n          <option value=\"0\" disabled>Categoria</option>\n          <option *ngFor=\"let item of this.categorias\" [value]='item.id'>{{item.descripcion}}</option>\n      </select>\n  </div>\n</div>\n";
     /***/
   },
 
@@ -311,7 +331,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"modal-header\">\r\n    <h4 class=\"modal-title\">Mi nuevo vehículo</h4>\r\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"activeModal.dismiss('Cross click')\">\r\n      <span aria-hidden=\"true\">&times;</span>\r\n    </button>\r\n</div>\r\n<div class=\"modal-body\">\r\n    <form [formGroup]=\"this.newVehiculoForm\" (ngSubmit)=\"onSubmit()\">\r\n        <input type=\"text\" class=\"form-control\" name=\"patente\" placeholder=\"Patente\" formControlName=\"patente\">\r\n        <br/>\r\n\r\n        <input type=\"text\" class=\"form-control\" name=\"descripcion\" placeholder=\"Descripción\" formControlName=\"descripcion\">\r\n\r\n        <br/>\r\n        <button type=\"submit\" class=\"btn btn-success btn-sm btn-block\">\r\n            <i class=\"fas fa-save\"></i>\r\n        </button>\r\n    </form>\r\n\r\n</div>";
+    __webpack_exports__["default"] = "<div class=\"modal-header\">\r\n    <h4 class=\"modal-title\">Mi nuevo vehículo</h4>\r\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"activeModal.dismiss('Cross click')\">\r\n      <span aria-hidden=\"true\">&times;</span>\r\n    </button>\r\n</div>\r\n<div class=\"modal-body\">\r\n    <form [formGroup]=\"this.newVehiculoForm\" (ngSubmit)=\"onSubmit()\">\r\n        <input type=\"text\" class=\"form-control\" name=\"patente\" placeholder=\"Patente\" formControlName=\"patente\">\r\n        <br/>\r\n\r\n        <input type=\"text\" class=\"form-control\" name=\"descripcion\" placeholder=\"Descripción\" formControlName=\"descripcion\">\r\n        <br>\r\n        <div>\r\n          <app-categorias-select (selectCategoriaEvent)=\"receiveSelectedCategoriaEvent($event)\"></app-categorias-select>\r\n        </div>\r\n\r\n        <br/>\r\n        <button type=\"submit\" class=\"btn btn-success btn-sm btn-block\">\r\n            <i class=\"fas fa-save\"></i>\r\n        </button>\r\n    </form>\r\n\r\n</div>\r\n";
     /***/
   },
 
@@ -351,7 +371,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"modal-header\">\r\n    <h4 class=\"modal-title\">Vehículo: {{this.vehiculo.patente}}</h4>\r\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"activeModal.dismiss('Cross click')\">\r\n      <span aria-hidden=\"true\">&times;</span>\r\n    </button>\r\n</div>\r\n<div class=\"modal-body\">\r\n    <form [formGroup]=\"this.editableVehiculoForm\" (ngSubmit)=\"onSubmit()\">\r\n        <input type=\"text\" class=\"form-control\" name=\"patente\" placeholder=\"Patente\" formControlName=\"patente\">\r\n        <br/>\r\n\r\n        <input type=\"text\" class=\"form-control\" name=\"descripcion\" placeholder=\"Descripción\" formControlName=\"descripcion\">\r\n\r\n        <br/>\r\n        <button type=\"submit\" class=\"btn btn-success btn-sm btn-block\">\r\n            <i class=\"fas fa-save\"></i>\r\n        </button>\r\n    </form>\r\n\r\n</div>";
+    __webpack_exports__["default"] = "<div class=\"modal-header\">\r\n    <h4 class=\"modal-title\">Vehículo: {{this.vehiculo.patente}}</h4>\r\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"activeModal.dismiss('Cross click')\">\r\n      <span aria-hidden=\"true\">&times;</span>\r\n    </button>\r\n</div>\r\n<div class=\"modal-body\">\r\n    <form [formGroup]=\"this.editableVehiculoForm\" (ngSubmit)=\"onSubmit()\">\r\n        <input type=\"text\" class=\"form-control\" name=\"patente\" placeholder=\"Patente\" formControlName=\"patente\">\r\n        <br/>\r\n\r\n        <input type=\"text\" class=\"form-control\" name=\"descripcion\" placeholder=\"Descripción\" formControlName=\"descripcion\">\r\n        <br>\r\n        <div>\r\n          <app-categorias-select (selectCategoriaEvent)=\"receiveSelectedCategoriaEvent($event)\"></app-categorias-select>\r\n        </div>\r\n\r\n        <br/>\r\n        <button type=\"submit\" class=\"btn btn-success btn-sm btn-block\">\r\n            <i class=\"fas fa-save\"></i>\r\n        </button>\r\n    </form>\r\n\r\n</div>\r\n";
     /***/
   },
 
@@ -1213,6 +1233,90 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/categorias/services/categorias.service.ts":
+  /*!***********************************************************!*\
+    !*** ./src/app/categorias/services/categorias.service.ts ***!
+    \***********************************************************/
+
+  /*! exports provided: CategoriasService */
+
+  /***/
+  function srcAppCategoriasServicesCategoriasServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "CategoriasService", function () {
+      return CategoriasService;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var src_environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! src/environments/environment */
+    "./src/environments/environment.ts");
+    /* harmony import */
+
+
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/common/http */
+    "./node_modules/@angular/common/fesm2015/http.js");
+    /* harmony import */
+
+
+    var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! rxjs/operators */
+    "./node_modules/rxjs/_esm2015/operators/index.js");
+
+    var CategoriasService =
+    /*#__PURE__*/
+    function () {
+      function CategoriasService(http) {
+        _classCallCheck(this, CategoriasService);
+
+        this.http = http;
+        this.API = src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].api;
+      }
+
+      _createClass(CategoriasService, [{
+        key: "GetAll",
+        value: function GetAll() {
+          return this.http.get("".concat(this.API, "/categorias")).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (categorias) {
+            return categorias;
+          }));
+        }
+      }]);
+
+      return CategoriasService;
+    }();
+
+    CategoriasService.ctorParameters = function () {
+      return [{
+        type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]
+      }];
+    };
+
+    CategoriasService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+      providedIn: 'root'
+    })], CategoriasService);
+    /***/
+  },
+
+  /***/
   "./src/app/clientes/clientes-routing.module.ts":
   /*!*****************************************************!*\
     !*** ./src/app/clientes/clientes-routing.module.ts ***!
@@ -1455,7 +1559,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             email: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
             telefono: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
             direccion: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-            activo: [true]
+            activo: [true, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            createdBy: [localStorage.getItem('userName'), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
           });
         }
       }, {
@@ -1464,7 +1569,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this = this;
 
           if (this.newClienteForm.valid) {
-            this.clientesService.Save(this.newClienteForm.value).subscribe(function (response) {}, function (error) {}, function () {
+            this.clientesService.Save(this.newClienteForm.value).subscribe(function (response) {
+              alert('El cliente ha sido creado satisfactoriamente.');
+            }, function (error) {
+              if (error.status === 401) {
+                alert('Usted no tiene permiso para realizar esta acción');
+              } else {
+                alert('Ups XD');
+              }
+            }, function () {
               return _this.activeModal.close();
             });
           }
@@ -1594,6 +1707,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.router = router;
         this.modalService = modalService;
         this.formBuilder = formBuilder;
+        this.clientes = [];
         this.filterForm = this.formBuilder.group({
           searchText: ['']
         });
@@ -1755,31 +1869,32 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             'Cache-Control': 'no-cache'
           })
         };
+        this.username = localStorage.getItem('userName');
       }
 
       _createClass(ClientesService, [{
         key: "bloquear",
         value: function bloquear(clientes) {
-          var url = "".concat(this.API, "/clientes/").concat(clientes.id);
+          var url = "".concat(this.API, "/clientes/").concat(clientes.id, "/").concat(this.username);
           return this.http.delete(url);
         }
       }, {
         key: "desbloquear",
         value: function desbloquear(cliente) {
-          var url = "".concat(this.API, "/clientes/").concat(cliente.id);
+          var url = "".concat(this.API, "/clientes/").concat(cliente.id, "/").concat(this.username);
           return this.http.delete(url);
         }
       }, {
         key: "GetAll",
         value: function GetAll() {
-          return this.http.get("".concat(this.API, "/clientes")).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (clientes) {
+          return this.http.get("".concat(this.API, "/clientes/").concat(this.username)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (clientes) {
             return clientes;
           }));
         }
       }, {
         key: "GetAllActivos",
         value: function GetAllActivos() {
-          return this.http.get("".concat(this.API, "/clientesActivos")).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (clientes) {
+          return this.http.get("".concat(this.API, "/clientesActivos/").concat(this.username)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (clientes) {
             return clientes;
           }));
         }
@@ -1787,13 +1902,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "GetByFilter",
         value: function GetByFilter(filter) {
           if (filter === null) {
-            return this.http.get("".concat(this.API, "/clientes")).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (clientes) {
+            return this.http.get("".concat(this.API, "/clientes/").concat(this.username)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (clientes) {
               return clientes;
             }));
           }
 
           var standardFilter = filter.toLowerCase();
-          return this.http.get("".concat(this.API, "/clientes")).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (clientes) {
+          return this.http.get("".concat(this.API, "/clientes/").concat(this.username)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (clientes) {
             return clientes.filter(function (x) {
               return x.nombre.toLowerCase().includes(standardFilter) || x.apellido.toLowerCase().includes(standardFilter) || x.email.toLowerCase().includes(standardFilter) || x.telefono.toLowerCase().includes(standardFilter);
             });
@@ -1920,7 +2035,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             email: [this.cliente.email, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
             telefono: [this.cliente.telefono, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
             direccion: [this.cliente.direccion, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
-            activo: [this.cliente.activo]
+            createdBy: [localStorage.getItem('userName'), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
+            activo: [this.cliente.activo, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
           });
         }
       }, {
@@ -1929,7 +2045,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this7 = this;
 
           if (this.editableClienteForm.valid) {
-            this.clientesService.Update(this.editableClienteForm.value).subscribe(function (response) {}, function (error) {}, function () {
+            this.clientesService.Update(this.editableClienteForm.value).subscribe(function (response) {
+              alert('El cliente ha sido editado satisfactoriamente.');
+            }, function (error) {
+              if (error.status === 401) {
+                alert('Usted no tiene permiso para realizar esta acción');
+              } else {
+                alert('Ups XD');
+              }
+            }, function () {
               return _this7.activeModal.close();
             });
           }
@@ -2740,26 +2864,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           });
         }
       }, {
-        key: "alquilarVehiculo",
-        value: function alquilarVehiculo(servicio) {
-          console.log("Usted va a alquilar ".concat(servicio));
-        }
-      }, {
         key: "buscarPorFiltros",
         value: function buscarPorFiltros() {
           this.criteria = {
             fromDate: "".concat(this.fromDate.year, "-").concat(this.fromDate.month, "-").concat(this.fromDate.day),
             toDate: "".concat(this.fromDate.year, "-").concat(this.fromDate.month, "-").concat(this.fromDate.day),
             alquileres: this.filterForm.value.alquileres,
-            devoluciones: this.filterForm.value.devoluciones
+            devoluciones: this.filterForm.value.devoluciones,
+            searchBy: localStorage.getItem('userName')
           };
           console.log(this.criteria);
           this.loadServicios(this.criteria);
         }
       }, {
-        key: "devolverVehiculo",
-        value: function devolverVehiculo(servicio) {
-          console.log("Usted va a devolver ".concat(servicio));
+        key: "cancelarServicio",
+        value: function cancelarServicio(servicio) {
+          var _this10 = this;
+
+          this.alquileresService.CancelarServicio(servicio).subscribe(function (response) {
+            console.log(response);
+
+            _this10.loadServicios();
+          }, function (error) {});
         }
       }, {
         key: "isHovered",
@@ -2779,11 +2905,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "loadServicios",
         value: function loadServicios(criteria) {
-          var _this10 = this;
+          var _this11 = this;
 
           this.alquileresService.GetByFilter(criteria).subscribe(function (servicios) {
-            _this10.servicios = servicios;
-            console.log(_this10.servicios);
+            _this11.servicios = servicios;
+            console.log(_this11.servicios);
           }, function (error) {
             console.log(error);
           }, function () {});
@@ -2922,22 +3048,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "cancelarServicio",
         value: function cancelarServicio(servicio) {
-          var _this11 = this;
+          var _this12 = this;
 
           this.alquileresService.CancelarServicio(servicio).subscribe(function (response) {
             console.log(response);
 
-            _this11.loadServicios();
+            _this12.loadServicios();
           }, function (error) {});
         }
       }, {
         key: "loadServicios",
         value: function loadServicios() {
-          var _this12 = this;
+          var _this13 = this;
 
           this.alquileresService.GetByCliente().subscribe(function (servicios) {
-            _this12.servicios = servicios;
-            console.log(_this12.servicios);
+            _this13.servicios = servicios;
+            console.log(_this13.servicios);
           });
         }
       }]);
@@ -3277,6 +3403,114 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/shared/categorias-select/categorias-select.component.css":
+  /*!**************************************************************************!*\
+    !*** ./src/app/shared/categorias-select/categorias-select.component.css ***!
+    \**************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppSharedCategoriasSelectCategoriasSelectComponentCss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NoYXJlZC9jYXRlZ29yaWFzLXNlbGVjdC9jYXRlZ29yaWFzLXNlbGVjdC5jb21wb25lbnQuY3NzIn0= */";
+    /***/
+  },
+
+  /***/
+  "./src/app/shared/categorias-select/categorias-select.component.ts":
+  /*!*************************************************************************!*\
+    !*** ./src/app/shared/categorias-select/categorias-select.component.ts ***!
+    \*************************************************************************/
+
+  /*! exports provided: CategoriasSelectComponent */
+
+  /***/
+  function srcAppSharedCategoriasSelectCategoriasSelectComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "CategoriasSelectComponent", function () {
+      return CategoriasSelectComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _categorias_services_categorias_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../../categorias/services/categorias.service */
+    "./src/app/categorias/services/categorias.service.ts");
+
+    var CategoriasSelectComponent =
+    /*#__PURE__*/
+    function () {
+      function CategoriasSelectComponent(categoriasService) {
+        _classCallCheck(this, CategoriasSelectComponent);
+
+        this.categoriasService = categoriasService;
+        this.selectCategoriaEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.id = 0;
+      }
+
+      _createClass(CategoriasSelectComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          var _this14 = this;
+
+          this.categoriasService.GetAll().subscribe(function (categorias) {
+            _this14.categorias = categorias;
+            console.log(_this14.categorias);
+          });
+        }
+      }, {
+        key: "sendSelectedOption",
+        value: function sendSelectedOption() {
+          this.selectCategoriaEvent.emit(this.id);
+        }
+      }]);
+
+      return CategoriasSelectComponent;
+    }();
+
+    CategoriasSelectComponent.ctorParameters = function () {
+      return [{
+        type: _categorias_services_categorias_service__WEBPACK_IMPORTED_MODULE_2__["CategoriasService"]
+      }];
+    };
+
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()], CategoriasSelectComponent.prototype, "selectCategoriaEvent", void 0);
+    CategoriasSelectComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-categorias-select',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./categorias-select.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/shared/categorias-select/categorias-select.component.html")).default,
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./categorias-select.component.css */
+      "./src/app/shared/categorias-select/categorias-select.component.css")).default]
+    })], CategoriasSelectComponent);
+    /***/
+  },
+
+  /***/
   "./src/app/shared/clientes-select/clientes-select.component.css":
   /*!**********************************************************************!*\
     !*** ./src/app/shared/clientes-select/clientes-select.component.css ***!
@@ -3348,10 +3582,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ClientesSelectComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this13 = this;
+          var _this15 = this;
 
           this.clientesService.GetAllActivos().subscribe(function (clientes) {
-            return _this13.clientes = clientes;
+            return _this15.clientes = clientes;
           });
         }
       }, {
@@ -3794,15 +4028,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! @angular/forms */
     "./node_modules/@angular/forms/fesm2015/forms.js");
+    /* harmony import */
+
+
+    var _categorias_select_categorias_select_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    /*! ./categorias-select/categorias-select.component */
+    "./src/app/shared/categorias-select/categorias-select.component.ts");
 
     var SharedModule = function SharedModule() {
       _classCallCheck(this, SharedModule);
     };
 
     SharedModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-      declarations: [_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_4__["NavbarComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_5__["HomeComponent"], _footer_footer_component__WEBPACK_IMPORTED_MODULE_6__["FooterComponent"], _clientes_select_clientes_select_component__WEBPACK_IMPORTED_MODULE_7__["ClientesSelectComponent"]],
+      declarations: [_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_4__["NavbarComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_5__["HomeComponent"], _footer_footer_component__WEBPACK_IMPORTED_MODULE_6__["FooterComponent"], _clientes_select_clientes_select_component__WEBPACK_IMPORTED_MODULE_7__["ClientesSelectComponent"], _categorias_select_categorias_select_component__WEBPACK_IMPORTED_MODULE_9__["CategoriasSelectComponent"]],
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"], _shared_routing_module__WEBPACK_IMPORTED_MODULE_3__["SharedRoutingModule"]],
-      exports: [_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_4__["NavbarComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_5__["HomeComponent"], _footer_footer_component__WEBPACK_IMPORTED_MODULE_6__["FooterComponent"], _clientes_select_clientes_select_component__WEBPACK_IMPORTED_MODULE_7__["ClientesSelectComponent"]]
+      exports: [_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_4__["NavbarComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_5__["HomeComponent"], _footer_footer_component__WEBPACK_IMPORTED_MODULE_6__["FooterComponent"], _clientes_select_clientes_select_component__WEBPACK_IMPORTED_MODULE_7__["ClientesSelectComponent"], _categorias_select_categorias_select_component__WEBPACK_IMPORTED_MODULE_9__["CategoriasSelectComponent"]]
     })], SharedModule);
     /***/
   },
@@ -3903,7 +4143,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "alquilarVehiculo",
         value: function alquilarVehiculo() {
-          var _this14 = this;
+          var _this16 = this;
 
           this.servicio = {
             clienteId: +this.clienteId,
@@ -3915,7 +4155,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.vehiculosService.Alquilar(this.servicio).subscribe(function (response) {}, function (error) {
             alert('La fecha seleccionada debe ser a partir de hoy');
           }, function () {
-            return _this14.activeModal.close();
+            return _this16.activeModal.close();
           });
         }
       }, {
@@ -4049,19 +4289,34 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.newVehiculoForm = this.formBuilder.group({
             patente: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
             descripcion: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
-            alquilado: [false]
+            categoriaId: [0, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
+            alquilado: [false, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
+            createdBy: [localStorage.getItem('userName'), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
           });
         }
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this15 = this;
+          var _this17 = this;
 
           if (this.newVehiculoForm.valid) {
-            this.vehiculosService.Save(this.newVehiculoForm.value).subscribe(function (response) {}, function (error) {}, function () {
-              return _this15.activeModal.close();
+            this.vehiculosService.Save(this.newVehiculoForm.value).subscribe(function (response) {
+              return alert('El vehiculo ha sido creado satisfactoriamente');
+            }, function (error) {
+              if (error.status === 401) {
+                alert('Usted no tiene permiso para realizar esta accion');
+              } else {
+                alert('Ups XD');
+              }
+            }, function () {
+              return _this17.activeModal.close();
             });
           }
+        }
+      }, {
+        key: "receiveSelectedCategoriaEvent",
+        value: function receiveSelectedCategoriaEvent(id) {
+          this.newVehiculoForm.value.categoriaId = id;
         }
       }]);
 
@@ -4197,6 +4452,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.calendar = calendar;
         this.formatter = formatter;
         this.isCollapsed = false;
+        this.vehiculos = [];
         this.filterForm = this.formBuilder.group({
           searchTextForm: this.formBuilder.group({
             searchText: ['']
@@ -4216,11 +4472,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "add",
         value: function add() {
-          var _this16 = this;
+          var _this18 = this;
 
           var modalRef = this.modalService.open(_create_create_component__WEBPACK_IMPORTED_MODULE_4__["CreateComponent"]);
           modalRef.result.then(function (data) {
-            _this16.loadVehiculos(null);
+            _this18.loadVehiculos(null);
           }, function (reason) {
             console.log('NO OK');
           });
@@ -4228,12 +4484,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "alquilarVehiculo",
         value: function alquilarVehiculo(vehiculo) {
-          var _this17 = this;
+          var _this19 = this;
 
           var modalRef = this.modalService.open(_alquilar_alquilar_component__WEBPACK_IMPORTED_MODULE_7__["AlquilarComponent"]);
           modalRef.componentInstance.vehiculo = vehiculo;
           modalRef.result.then(function (data) {
-            _this17.loadVehiculos(null);
+            _this19.loadVehiculos(null);
           }, function (reason) {
             console.log('NO OK');
           });
@@ -4251,23 +4507,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "devolverVehiculo",
         value: function devolverVehiculo(vehiculo) {
-          var _this18 = this;
+          var _this20 = this;
 
           this.vehiculosService.Devolver(vehiculo).subscribe(function (response) {
             console.log(response);
 
-            _this18.loadVehiculos(null);
+            _this20.loadVehiculos(null);
           }, function (error) {});
         }
       }, {
         key: "edit",
         value: function edit(vehiculo) {
-          var _this19 = this;
+          var _this21 = this;
 
           var modalRef = this.modalService.open(_update_update_component__WEBPACK_IMPORTED_MODULE_5__["UpdateComponent"]);
           modalRef.componentInstance.vehiculo = vehiculo;
           modalRef.result.then(function (data) {
-            _this19.loadVehiculos(null);
+            _this21.loadVehiculos(null);
           }, function (reason) {
             console.log('NO OK');
           });
@@ -4275,11 +4531,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "loadVehiculos",
         value: function loadVehiculos(searchValue) {
-          var _this20 = this;
+          var _this22 = this;
 
           this.vehiculosService.GetByFilter(searchValue).subscribe(function (vehiculos) {
-            _this20.vehiculos = vehiculos;
-            console.log(_this20.vehiculos);
+            _this22.vehiculos = vehiculos;
+            console.log(_this22.vehiculos);
           });
         }
       }, {
@@ -4379,38 +4635,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var VehiculosService =
     /*#__PURE__*/
     function () {
-      // vehiculos: IVehiculo[] = [
-      //   {
-      //     patente: 'ABC 123',
-      //     descripcion: 'BMW M3',
-      //     disponible: true
-      //   },
-      //   {
-      //     patente: 'ABC 234',
-      //     descripcion: 'BMW M3',
-      //     disponible: false
-      //   },
-      //   {
-      //     patente: 'ABC 345',
-      //     descripcion: 'BMW M3',
-      //     disponible: true
-      //   },
-      //   {
-      //     patente: 'ABC 456',
-      //     descripcion: 'BMW M3',
-      //     disponible: false
-      //   },
-      //   {
-      //     patente: 'ABC 567',
-      //     descripcion: 'BMW M3',
-      //     disponible: false
-      //   },
-      //   {
-      //     patente: 'ABC 678',
-      //     descripcion: 'BMW M3',
-      //     disponible: true
-      //   },
-      // ];
       function VehiculosService(http, loginService) {
         _classCallCheck(this, VehiculosService);
 
@@ -4423,6 +4647,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             'Cache-Control': 'no-cache'
           })
         };
+        this.username = localStorage.getItem('userName');
       }
 
       _createClass(VehiculosService, [{
@@ -4448,12 +4673,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           if (!filter) {
-            return this.http.get(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (vehiculos) {
+            return this.http.get("".concat(url)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (vehiculos) {
               return vehiculos;
             }));
           }
 
-          return this.http.post("".concat(this.API, "/vehiculosFiltered"), filter, this.options).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (vehiculos) {
+          return this.http.post("".concat(this.API, "/vehiculosFiltered/").concat(this.username), filter, this.options).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (vehiculos) {
             return vehiculos;
           }));
         }
@@ -4576,19 +4801,36 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             id: [this.vehiculo.id],
             patente: [this.vehiculo.patente, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
             descripcion: [this.vehiculo.descripcion, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
-            alquilado: [this.vehiculo.alquilado]
+            alquilado: [this.vehiculo.alquilado, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
+            categoriaId: [this.vehiculo.categoriaId, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
+            createdBy: [localStorage.getItem('userName'), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
           });
         }
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this21 = this;
+          var _this23 = this;
+
+          console.log(this.editableVehiculoForm);
 
           if (this.editableVehiculoForm.valid) {
-            this.vehiculosService.Update(this.editableVehiculoForm.value).subscribe(function (response) {}, function (error) {}, function () {
-              return _this21.activeModal.close();
+            this.vehiculosService.Update(this.editableVehiculoForm.value).subscribe(function (response) {
+              return alert('El vehiculo ha sido creado satisfactoriamente');
+            }, function (error) {
+              if (error.status === 401) {
+                alert('Usted no tiene permiso para realizar esta accion');
+              } else {
+                alert('Ups XD');
+              }
+            }, function () {
+              return _this23.activeModal.close();
             });
           }
+        }
+      }, {
+        key: "receiveSelectedCategoriaEvent",
+        value: function receiveSelectedCategoriaEvent(id) {
+          this.editableVehiculoForm.value.categoriaId = id;
         }
       }]);
 

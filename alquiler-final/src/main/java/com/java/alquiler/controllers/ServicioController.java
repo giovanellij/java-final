@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -24,10 +25,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.java.alquiler.business.CreateServicio;
 import com.java.alquiler.business.SearchServicioCriteria;
 import com.java.alquiler.entities.Servicio;
+import com.java.alquiler.entities.Usuario;
 import com.java.alquiler.entities.Vehiculo;
 import com.java.alquiler.exceptions.DateBeforeTodayException;
+import com.java.alquiler.exceptions.RequestUnauthorizedException;
 import com.java.alquiler.exceptions.ResourceNotFoundException;
 import com.java.alquiler.repositories.ServicioRepository;
+import com.java.alquiler.repositories.UserRepository;
 import com.java.alquiler.repositories.VehiculoRepository;
 
 @CrossOrigin(origins = "*")
@@ -36,6 +40,9 @@ import com.java.alquiler.repositories.VehiculoRepository;
 public class ServicioController {
 	@Autowired
 	private ServicioRepository servicioRepository;
+	
+	@Autowired
+	private UserRepository usuarioRepository;
 	
 	@Autowired
 	private VehiculoRepository vehiculoRepository;
@@ -59,17 +66,39 @@ public class ServicioController {
 	}
 	
 	@PostMapping("/serviciosFiltered")
-	public List<Servicio> getServiciosByFilter(@Valid @RequestBody SearchServicioCriteria criteria) {
+	public List<Servicio> getServiciosByFilter(@Valid @RequestBody SearchServicioCriteria criteria) throws ParseException, ResourceNotFoundException, RequestUnauthorizedException {
 		
-		List<Servicio> servicios = new ArrayList<Servicio>();		
+		Usuario usuario = usuarioRepository.findByUserName(criteria.searchBy)
+				.orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado un usuario para ese nombre: " + criteria.searchBy));
+		
+		if(!usuario.isAdministrador()) {			
+			throw new RequestUnauthorizedException("El usuario no tiene permiso para realizar esta accion");			
+		}
+		
+		List<Servicio> servicios = new ArrayList<Servicio>();
+		
+		Date fromDate = new SimpleDateFormat("yyyy-MM-dd").parse(criteria.fromDate); 
+		Date toDate = new SimpleDateFormat("yyyy-MM-dd").parse(criteria.toDate);
 		
 		if(criteria.alquileres && criteria.devoluciones) {
-			servicios = servicioRepository.findAllServiciosBetweenDates(criteria.fromDate, criteria.toDate);
+			servicios = servicioRepository
+					.findAll()
+					.stream()
+					.filter(p -> p.getFecServicio().after(fromDate) && p.getFecServicio().before(toDate))
+					.collect(Collectors.toList());
 		} else {
 			if(criteria.alquileres) {
-				servicios = servicioRepository.findServiciosAlquiladosBetweenDates(criteria.fromDate, criteria.toDate);
+				servicios = servicioRepository
+						.findServiciosAlquilados()
+						.stream()
+						.filter(p -> p.getTimestampServicio().after(fromDate) && p.getTimestampServicio().before(toDate))
+						.collect(Collectors.toList());
 			} else {
-				servicios = servicioRepository.findServiciosDevueltosBetweenDates(criteria.fromDate, criteria.toDate);
+				servicios = servicioRepository
+						.findServiciosDevueltos()
+						.stream()
+						.filter(p -> p.getTimestampServicio().after(fromDate) && p.getTimestampServicio().before(toDate))
+						.collect(Collectors.toList());
 			}
 		}
 		

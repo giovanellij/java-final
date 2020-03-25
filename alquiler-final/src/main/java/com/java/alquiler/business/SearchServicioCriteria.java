@@ -5,4 +5,5 @@ public class SearchServicioCriteria {
 	public String toDate;
 	public Boolean alquileres;
 	public Boolean devoluciones;
+	public String searchBy;
 }

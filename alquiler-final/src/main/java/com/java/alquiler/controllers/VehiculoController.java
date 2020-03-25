@@ -1,15 +1,12 @@
 package com.java.alquiler.controllers;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,9 +15,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.java.alquiler.business.CreateVehiculo;
 import com.java.alquiler.business.SearchVehiculoCriteria;
+import com.java.alquiler.entities.Usuario;
 import com.java.alquiler.entities.Vehiculo;
+import com.java.alquiler.exceptions.RequestUnauthorizedException;
 import com.java.alquiler.exceptions.ResourceNotFoundException;
+import com.java.alquiler.repositories.UserRepository;
 import com.java.alquiler.repositories.VehiculoRepository;
 
 @CrossOrigin(origins = "*")
@@ -29,9 +30,22 @@ import com.java.alquiler.repositories.VehiculoRepository;
 public class VehiculoController {
 	@Autowired
 	private VehiculoRepository vehiculoRepository;
+	
+	@Autowired
+	private UserRepository usuarioRepository;
 
-	@GetMapping("/vehiculos")
-	public List<Vehiculo> getAllVehiculos() {
+	@GetMapping("/vehiculos/{username}")
+	public List<Vehiculo> getAllVehiculos(
+			@PathVariable(value = "username") String username
+			) throws ResourceNotFoundException, RequestUnauthorizedException {
+		
+		Usuario usuario = usuarioRepository.findByUserName(username)
+				.orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado un usuario para ese nombre: " + username));
+		
+		if(!usuario.isAdministrador()) {			
+			throw new RequestUnauthorizedException("El usuario no tiene permiso para realizar esta accion");			
+		}
+		
 		return vehiculoRepository.findAll();
 	}
 	
@@ -45,19 +59,19 @@ public class VehiculoController {
 	@GetMapping("/vehiculosAlquilados/{id}")
 	public List<Vehiculo> getAllVehiculosAlquiladosByClienteId(@PathVariable(value = "id") Long clienteId) {
 		return vehiculoRepository.findAllVehiculosAlquiladosByCliente(clienteId);
-	}
-
-	@GetMapping("/vehiculo/{id}")
-	public ResponseEntity<Vehiculo> getVehiculoById(@PathVariable(value = "id") Long vehiculoId)
-			throws ResourceNotFoundException {
-		Vehiculo vehiculo = vehiculoRepository.findById(vehiculoId)
-				.orElseThrow(() -> new ResourceNotFoundException("Vehiculo not found for this id :: " + vehiculoId));
-		return ResponseEntity.ok().body(vehiculo);
-	}
+	}	
 	
-	
-	@PostMapping("/vehiculosFiltered")
-	public List<Vehiculo> getVehiculoByFilter(@Valid @RequestBody SearchVehiculoCriteria criteria) {
+	@PostMapping("/vehiculosFiltered/{username}")
+	public List<Vehiculo> getVehiculoByFilter(
+			@PathVariable(value = "username") String username,
+			@Valid @RequestBody SearchVehiculoCriteria criteria) throws ResourceNotFoundException, RequestUnauthorizedException {
+		
+		Usuario usuario = usuarioRepository.findByUserName(username)
+				.orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado un usuario para ese nombre: " + username));
+		
+		if(!usuario.isAdministrador()) {			
+			throw new RequestUnauthorizedException("El usuario no tiene permiso para realizar esta accion");			
+		}
 		
 		List<Vehiculo> vehiculos = new ArrayList<Vehiculo>();		
 		
@@ -74,35 +88,44 @@ public class VehiculoController {
 		return vehiculos;
 	}
 	
-
 	@PostMapping("/vehiculos")
-	public Vehiculo createEmployee(@Valid @RequestBody Vehiculo vehiculo) {
-		return vehiculoRepository.save(vehiculo);
+	public Vehiculo createVehiculo(
+			@Valid @RequestBody CreateVehiculo vehiculo
+			) throws RequestUnauthorizedException, ResourceNotFoundException {
+		
+		Usuario usuario = usuarioRepository.findByUserName(vehiculo.createdBy)
+				.orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado un usuario para ese nombre: " + vehiculo.createdBy));
+		
+		if(!usuario.isAdministrador()) {			
+			throw new RequestUnauthorizedException("El usuario no tiene permiso para realizar esta accion");			
+		}
+		
+		Vehiculo newVehiculo = new Vehiculo(vehiculo);
+		
+		return vehiculoRepository.save(newVehiculo);
 	}
 
 	@PutMapping("/vehiculos/{id}")
-	public ResponseEntity<Vehiculo> updateVehiculo(@PathVariable(value = "id") Long vehiculoId,
-			@Valid @RequestBody Vehiculo vehiculoDetails) throws ResourceNotFoundException {
+	public ResponseEntity<Vehiculo> updateVehiculo(
+			@PathVariable(value = "id") Long vehiculoId,
+			@Valid @RequestBody CreateVehiculo vehiculoDetails
+			) throws ResourceNotFoundException, RequestUnauthorizedException {
+		
+		Usuario usuario = usuarioRepository.findByUserName(vehiculoDetails.createdBy)
+				.orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado un usuario para ese nombre: " + vehiculoDetails.createdBy));
+		
+		if(!usuario.isAdministrador()) {			
+			throw new RequestUnauthorizedException("El usuario no tiene permiso para realizar esta accion");			
+		}
+		
 		Vehiculo vehiculo = vehiculoRepository.findById(vehiculoId)
-				.orElseThrow(() -> new ResourceNotFoundException("Vehiculo not found for this id : " + vehiculoId));
+				.orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado un vehiculo para este id: " + vehiculoId));
 
-		vehiculo.setPatente(vehiculoDetails.getPatente());
-		vehiculo.setDescripcion(vehiculoDetails.getDescripcion());
+		vehiculo.setPatente(vehiculoDetails.patente);
+		vehiculo.setDescripcion(vehiculoDetails.descripcion);
+		
 		final Vehiculo updatedVehiculo = vehiculoRepository.save(vehiculo);
+		
 		return ResponseEntity.ok(updatedVehiculo);
-	}
-
-	@DeleteMapping("/vehiculos/{id}")
-	public Map<String, Boolean> deleteVehiculo(@PathVariable(value = "id") Long vehiculoId)
-			throws ResourceNotFoundException {
-		Vehiculo vehiculo = vehiculoRepository.findById(vehiculoId)
-				.orElseThrow(() -> new ResourceNotFoundException("Vehiculo not found for this id : " + vehiculoId));
-
-		vehiculo.setAlquilado(!vehiculo.getAlquilado());
-
-		vehiculoRepository.save(vehiculo);
-		Map<String, Boolean> response = new HashMap<>();
-		response.put("deleted", Boolean.TRUE);
-		return response;
 	}
 }

@@ -18,12 +18,13 @@ public interface ServicioRepository extends JpaRepository<Servicio, Long>{
 	@Query("select s from Servicio s where s.clienteId = :clienteId order by s.fecServicio desc")
 	List<Servicio> findAllServiciosByClienteId(long clienteId);
 	
-	@Query("select s from Servicio s where (s.fecServicio between :fromDate and :toDate) order by s.fecServicio desc")
-	List<Servicio> findAllServiciosBetweenDates(@Param("fromDate") String fromDate, @Param("toDate") String toDate);
+	@Query("select s from Servicio s order by s.fecServicio desc")
+	List<Servicio> findAllServicios();
 	
-	@Query("select s from Servicio s where (s.fecCancelacion = null and (s.fecServicio between :fromDate and :toDate)) order by s.fecServicio desc")
-	List<Servicio> findServiciosAlquiladosBetweenDates(@Param("fromDate") String fromDate, @Param("toDate") String toDate);
+	@Query("select s from Servicio s where (s.fecCancelacion = null) order by s.fecServicio desc")
+	List<Servicio> findServiciosAlquilados();
 	
-	@Query("select s from Servicio s where (s.fecCancelacion != null and (s.fecServicio between :fromDate and :toDate)) order by s.fecServicio desc")
-	List<Servicio> findServiciosDevueltosBetweenDates(@Param("fromDate") String fromDate, @Param("toDate") String toDate);
+	@Query("select s from Servicio s where (s.fecCancelacion != null) order by s.fecServicio desc")
+	List<Servicio> findServiciosDevueltos();
+
 }
