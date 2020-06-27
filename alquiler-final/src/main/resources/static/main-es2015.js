@@ -590,6 +590,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./shared/shared.module */ "./src/app/shared/shared.module.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _interceptors_api_interceptor__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./interceptors/api.interceptor */ "./src/app/interceptors/api.interceptor.ts");
+
 
 
 
@@ -620,7 +622,9 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             ngx_ui_loader__WEBPACK_IMPORTED_MODULE_6__["NgxUiLoaderHttpModule"].forRoot({ exclude: [''] }),
             ag_grid_angular__WEBPACK_IMPORTED_MODULE_3__["AgGridModule"].withComponents([]),
         ],
-        providers: [],
+        providers: [
+            { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HTTP_INTERCEPTORS"], useClass: _interceptors_api_interceptor__WEBPACK_IMPORTED_MODULE_11__["ApiInterceptor"], multi: true }
+        ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]],
         schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_2__["CUSTOM_ELEMENTS_SCHEMA"]]
     })
@@ -1223,6 +1227,35 @@ AuthGuard = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/interceptors/api.interceptor.ts":
+/*!*************************************************!*\
+  !*** ./src/app/interceptors/api.interceptor.ts ***!
+  \*************************************************/
+/*! exports provided: ApiInterceptor */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApiInterceptor", function() { return ApiInterceptor; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let ApiInterceptor = class ApiInterceptor {
+    intercept(req, next) {
+        const baseUrl = document.getElementsByTagName('base')[0].href;
+        const apiReq = req.clone({ url: `${baseUrl}${req.url}` });
+        return next.handle(apiReq);
+    }
+};
+ApiInterceptor = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
+], ApiInterceptor);
+
+
+
+/***/ }),
+
 /***/ "./src/app/security/login/login.component.css":
 /*!****************************************************!*\
   !*** ./src/app/security/login/login.component.css ***!
@@ -1281,7 +1314,7 @@ let LoginComponent = class LoginComponent {
             }
             this.router.navigate(['']);
         }, (error) => {
-            console.log(error);
+            alert(error.error.message);
         }, () => { });
     }
 };
@@ -1563,7 +1596,7 @@ let FeedComponent = class FeedComponent {
     buscarPorFiltros() {
         this.criteria = {
             fromDate: `${this.fromDate.year}-${this.fromDate.month}-${this.fromDate.day}`,
-            toDate: `${this.fromDate.year}-${this.fromDate.month}-${this.fromDate.day}`,
+            toDate: `${this.toDate.year}-${this.toDate.month}-${this.toDate.day}`,
             alquileres: this.filterForm.value.alquileres,
             devoluciones: this.filterForm.value.devoluciones,
             searchBy: localStorage.getItem('userName')
@@ -2815,32 +2848,18 @@ VehiculosModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!*****************************************!*\
   !*** ./src/environments/environment.ts ***!
   \*****************************************/
-/*! exports provided: host, environment */
+/*! exports provided: environment */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "host", function() { return host; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
-const host = 'http://localhost:8080/api/v1';
-// export const host = 'https://lit-bastion-66597.herokuapp.com';
 const environment = {
     production: false,
-    api: host
+    api: 'api/v1'
 };
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
 
 
 /***/ }),

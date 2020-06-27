@@ -1215,6 +1215,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_common_http__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
     /*! @angular/common/http */
     "./node_modules/@angular/common/fesm2015/http.js");
+    /* harmony import */
+
+
+    var _interceptors_api_interceptor__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    /*! ./interceptors/api.interceptor */
+    "./src/app/interceptors/api.interceptor.ts");
 
     var AppModule = function AppModule() {
       _classCallCheck(this, AppModule);
@@ -1225,7 +1231,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"], _shared_shared_module__WEBPACK_IMPORTED_MODULE_9__["SharedModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HttpClientModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_4__["BrowserAnimationsModule"], ngx_toastr__WEBPACK_IMPORTED_MODULE_5__["ToastrModule"].forRoot(), ngx_ui_loader__WEBPACK_IMPORTED_MODULE_6__["NgxUiLoaderModule"], ngx_ui_loader__WEBPACK_IMPORTED_MODULE_6__["NgxUiLoaderRouterModule"], ngx_ui_loader__WEBPACK_IMPORTED_MODULE_6__["NgxUiLoaderHttpModule"].forRoot({
         exclude: ['']
       }), ag_grid_angular__WEBPACK_IMPORTED_MODULE_3__["AgGridModule"].withComponents([])],
-      providers: [],
+      providers: [{
+        provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HTTP_INTERCEPTORS"],
+        useClass: _interceptors_api_interceptor__WEBPACK_IMPORTED_MODULE_11__["ApiInterceptor"],
+        multi: true
+      }],
       bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]],
       schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_2__["CUSTOM_ELEMENTS_SCHEMA"]]
     })], AppModule);
@@ -2273,6 +2283,63 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/interceptors/api.interceptor.ts":
+  /*!*************************************************!*\
+    !*** ./src/app/interceptors/api.interceptor.ts ***!
+    \*************************************************/
+
+  /*! exports provided: ApiInterceptor */
+
+  /***/
+  function srcAppInterceptorsApiInterceptorTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ApiInterceptor", function () {
+      return ApiInterceptor;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var ApiInterceptor =
+    /*#__PURE__*/
+    function () {
+      function ApiInterceptor() {
+        _classCallCheck(this, ApiInterceptor);
+      }
+
+      _createClass(ApiInterceptor, [{
+        key: "intercept",
+        value: function intercept(req, next) {
+          var baseUrl = document.getElementsByTagName('base')[0].href;
+          var apiReq = req.clone({
+            url: "".concat(baseUrl).concat(req.url)
+          });
+          return next.handle(apiReq);
+        }
+      }]);
+
+      return ApiInterceptor;
+    }();
+
+    ApiInterceptor = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()], ApiInterceptor);
+    /***/
+  },
+
+  /***/
   "./src/app/security/login/login.component.css":
   /*!****************************************************!*\
     !*** ./src/app/security/login/login.component.css ***!
@@ -2379,7 +2446,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             _this8.router.navigate(['']);
           }, function (error) {
-            console.log(error);
+            alert(error.error.message);
           }, function () {});
         }
       }]);
@@ -2868,7 +2935,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function buscarPorFiltros() {
           this.criteria = {
             fromDate: "".concat(this.fromDate.year, "-").concat(this.fromDate.month, "-").concat(this.fromDate.day),
-            toDate: "".concat(this.fromDate.year, "-").concat(this.fromDate.month, "-").concat(this.fromDate.day),
+            toDate: "".concat(this.toDate.year, "-").concat(this.toDate.month, "-").concat(this.toDate.day),
             alquileres: this.filterForm.value.alquileres,
             devoluciones: this.filterForm.value.devoluciones,
             searchBy: localStorage.getItem('userName')
@@ -5030,19 +5097,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     !*** ./src/environments/environment.ts ***!
     \*****************************************/
 
-  /*! exports provided: host, environment */
+  /*! exports provided: environment */
 
   /***/
   function srcEnvironmentsEnvironmentTs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "host", function () {
-      return host;
-    });
     /* harmony export (binding) */
 
 
@@ -5054,26 +5115,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
     /*! tslib */
-    "./node_modules/tslib/tslib.es6.js"); // This file can be replaced during build by using the `fileReplacements` array.
-    // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
-    // The list of file replacements can be found in `angular.json`.
-
-
-    var host = 'http://localhost:8080/api/v1'; // export const host = 'https://lit-bastion-66597.herokuapp.com';
+    "./node_modules/tslib/tslib.es6.js");
 
     var environment = {
       production: false,
-      api: host
+      api: 'api/v1'
     };
-    /*
-     * For easier debugging in development mode, you can import the following file
-     * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
-     *
-     * This import should be commented out in production mode because it will have a negative impact
-     * on performance if an error is thrown.
-     */
-    // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
-
     /***/
   },
 
