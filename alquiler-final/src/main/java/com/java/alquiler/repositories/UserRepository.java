@@ -16,6 +16,11 @@ public interface UserRepository  extends JpaRepository<Usuario, Long>{
     		@Param("username")String username, 
     		@Param("password")String password);
 	
+	@Query("select u from Usuario u where u.userName like %:username% AND u.password like %:password% AND u.cliente.activo = true")
+	Optional<Usuario> login(
+    		@Param("username")String username, 
+    		@Param("password")String password);
+	
 	@Query("select u from Usuario u where u.userName like %:username%")
 	Optional<Usuario> findByUserName(
     		@Param("username") String username);

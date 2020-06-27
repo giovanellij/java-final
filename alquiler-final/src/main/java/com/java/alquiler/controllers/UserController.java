@@ -26,8 +26,16 @@ public class UserController {
 	
 	@PostMapping("/usuarios")
 	public ResponseEntity<Usuario> login(@Valid @RequestBody LoginUser user) throws ResourceNotFoundException {
-		Usuario loguedUser = userRepository.findByUserNameAndPassword(user.userName, user.password)
-				.orElseThrow(() -> new ResourceNotFoundException("Usuario not found for this id : " + user.userName));
+		Usuario loguedUser = null;
+		
+		if(user.getUserName().toLowerCase().equals("admin")) {
+			loguedUser = userRepository.findByUserNameAndPassword(user.userName, user.password)
+					.orElseThrow(() -> new ResourceNotFoundException("Usuario o contraseña inválidos"));
+		} else {
+			loguedUser = userRepository.login(user.userName, user.password)
+					.orElseThrow(() -> new ResourceNotFoundException("Usuario o contraseña inválidos"));
+		}
+		
 		
 		return ResponseEntity.ok().body(loguedUser);
 	}

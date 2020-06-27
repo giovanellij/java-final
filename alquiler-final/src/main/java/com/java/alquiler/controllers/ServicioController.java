@@ -77,8 +77,8 @@ public class ServicioController {
 		
 		List<Servicio> servicios = new ArrayList<Servicio>();
 		
-		Date fromDate = new SimpleDateFormat("yyyy-MM-dd").parse(criteria.fromDate); 
-		Date toDate = new SimpleDateFormat("yyyy-MM-dd").parse(criteria.toDate);
+		Date fromDate = new SimpleDateFormat("yyyy-MM-dd").parse(criteria.getFromDate()); 
+		Date toDate = new SimpleDateFormat("yyyy-MM-dd").parse(criteria.getToDate());
 		
 		if(criteria.alquileres && criteria.devoluciones) {
 			servicios = servicioRepository
