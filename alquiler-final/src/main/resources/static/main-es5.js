@@ -2677,18 +2677,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "isAdmin",
         value: function isAdmin() {
-          var isAuthenticated = false;
           var isAdmin = false;
 
-          if (localStorage.getItem('userName') !== null) {
-            isAuthenticated = true;
-
-            if (localStorage.getItem('isAdmin') === 'true') {
-              isAdmin = true;
-            }
+          if (localStorage.getItem('isAdmin') === 'true') {
+            isAdmin = true;
           }
 
-          return isAuthenticated && isAdmin;
+          return this.isAuthenticated() && isAdmin;
         }
       }, {
         key: "login",
@@ -4736,7 +4731,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var url = "".concat(this.API, "/vehiculos");
 
           if (!this.loginService.isAdmin()) {
-            url += 'Disponibles';
+            url = "".concat(this.API, "/vehiculosDisponibles");
+          } else {
+            if (this.loginService.isAdmin()) {
+              url = "".concat(this.API, "/vehiculos/admin");
+              console.log(url);
+            }
           }
 
           if (!filter) {

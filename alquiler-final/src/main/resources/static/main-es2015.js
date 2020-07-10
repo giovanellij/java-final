@@ -1445,15 +1445,11 @@ let LoginService = class LoginService {
         return isAuthenticated;
     }
     isAdmin() {
-        let isAuthenticated = false;
         let isAdmin = false;
-        if (localStorage.getItem('userName') !== null) {
-            isAuthenticated = true;
-            if (localStorage.getItem('isAdmin') === 'true') {
-                isAdmin = true;
-            }
+        if (localStorage.getItem('isAdmin') === 'true') {
+            isAdmin = true;
         }
-        return isAuthenticated && isAdmin;
+        return this.isAuthenticated() && isAdmin;
     }
     login(user) {
         const url = `${this.API}/usuarios`;
@@ -2629,7 +2625,13 @@ let VehiculosService = class VehiculosService {
     GetByFilter(filter) {
         let url = `${this.API}/vehiculos`;
         if (!this.loginService.isAdmin()) {
-            url += 'Disponibles';
+            url = `${this.API}/vehiculosDisponibles`;
+        }
+        else {
+            if (this.loginService.isAdmin()) {
+                url = `${this.API}/vehiculos/admin`;
+                console.log(url);
+            }
         }
         if (!filter) {
             return this.http.get(`${url}`).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])((vehiculos) => {
